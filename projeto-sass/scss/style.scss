@@ -41,6 +41,16 @@ $img-width: 45%;
 
 @import "header", "footer", "about", "article";
 
+$directions: top, bottom, left, right;
+$layout-margin-size: 10px;
+
+@each $direction in $directions {
+    %no-margin-#{$direction} {margin-#{direction}: 0;}
+    %default-margin-#{$direction} {margin-#{direction}: $layout-margin-size;}
+    %double-margin-#{$direction} {margin-#{direction}: $layout-margin-size * 2;}
+    %half-margin-#{$direction} {margin-#{direction}: $layout-margin-size / 2;}
+}
+
 .main {
     display: flex;
     justify-content: center;
