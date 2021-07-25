@@ -1,6 +1,18 @@
 $half-width: 50%;
 $full-width: 100%;
 
+@mixin theme-collection($half-post: true) {
+    @include for-phone-only {
+        width: $full-width;
+    }
+
+    @if $half-post {
+        width: $half-width;
+    } @else {
+        width: $full-width;
+    }
+}
+
 .collection {
    display: flex;
    flex-wrap: wrap;
