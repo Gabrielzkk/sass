@@ -5,6 +5,8 @@ $dark-grey: #464646;
 $yellow: #fabe50;
 $img-width: 45%;
 
+@use "sass:math";
+
 %no-decoration {text-decoration: none}
 %u-decoration {text-decoration: underline}
 
@@ -36,10 +38,10 @@ $img-width: 45%;
 }
 
 @function calculateRem($size) {
-    @return $size / 16px * 1rem;
+    @return math.div($size, 16px) * 1rem;
 }
 
-@import "header", "footer", "about", "article";
+@import "header", "footer", "about", "article", "collection";
 
 $directions: top, bottom, left, right;
 $layout-margin-size: 10px;
@@ -48,7 +50,7 @@ $layout-margin-size: 10px;
     %no-margin-#{$direction} {margin-#{direction}: 0;}
     %default-margin-#{$direction} {margin-#{direction}: $layout-margin-size;}
     %double-margin-#{$direction} {margin-#{direction}: $layout-margin-size * 2;}
-    %half-margin-#{$direction} {margin-#{direction}: $layout-margin-size / 2;}
+    %half-margin-#{$direction} {margin-#{direction}: math.div($layout-margin-size, 2);}
 }
 
 .main {
@@ -87,12 +89,13 @@ $layout-margin-size: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        @extend %default-margin-top, %double-margin-bottom;
         margin-top: 10px;
         margin-bottom: 20px;
     }
 
     &__date {
-        margin: 0 10px;
+        margin-right: 10px; 
         @include fontSize(12px);
         font-style: italic;
     }
@@ -102,7 +105,7 @@ $layout-margin-size: 10px;
         padding: 5px 7px;
         color: $purple;
         border: 1px solid $purple;
-        margin: 0 10px;
+        @extend %no-margin-top, %no-margin-bottom, %default-margin-left, %default-margin-right;
     }
 
     &__details {
