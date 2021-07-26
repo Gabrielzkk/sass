@@ -13,6 +13,18 @@ $full-width: 100%;
     }
 }
 
+@mixin font-collection($half-title: true) {
+    @include for-phone-only {
+        @include fontSize(16px);
+    }
+
+    @if $half-title {
+        @include fontSize(18px);
+    } @else {
+        @include fontSize(22px);
+    }
+}
+
 .collection {
    display: flex;
    flex-wrap: wrap;
@@ -31,6 +43,11 @@ $full-width: 100%;
        flex-wrap: wrap;
        justify-content: center;
        align-items: center;
+       @include theme-collection($half-post: false);
+
+       &.half {
+           @include theme-collection($half-post: true);
+       }
    }
 
    &__figure {
@@ -57,6 +74,12 @@ $full-width: 100%;
        width: 100%;
        margin: 10px 0;
 
+       @include font-collection($half-title: false);
+
+       &.half {
+           @include font-collection($half-title: true);
+       }
+
        &:hover {
            color: $purple;
            text-decoration: underline;
@@ -64,7 +87,7 @@ $full-width: 100%;
    }
 
    &__date {
-       @extend %no-margin-top, %no-margin-bottom, %default-margin-left, %default-margin-right;
+       @extend %no-margin-top, %no-margin-bottom, %default-margin-left, %double-margin-right;
        @include fontSize(12px);
        font-style: italic;
        width: 20%;

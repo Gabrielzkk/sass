@@ -41,7 +41,7 @@ $img-width: 45%;
     @return math.div($size, 16px) * 1rem;
 }
 
-@import "header", "footer", "about", "article", "collection";
+@import "header", "footer", "about", "article", "collection", "contact";
 
 $directions: top, bottom, left, right;
 $layout-margin-size: 10px;
